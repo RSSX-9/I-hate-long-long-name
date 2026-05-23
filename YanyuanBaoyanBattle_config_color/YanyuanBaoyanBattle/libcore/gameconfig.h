@@ -4,7 +4,7 @@ namespace GameConfig
 {
 // ----- 核心流程 -----
 inline constexpr int StartingFunds = 3000;
-inline constexpr int RecruitBudget = 1000;
+inline constexpr int RecruitBudget = 1600;
 inline constexpr int MinRecruitCount = 4;
 inline constexpr int TotalSemesters = 8;
 inline constexpr double TargetRecommendRate = 0.60;

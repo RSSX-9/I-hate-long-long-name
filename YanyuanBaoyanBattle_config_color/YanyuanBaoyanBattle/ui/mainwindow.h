@@ -1,9 +1,8 @@
 #pragma once
 
 #include <QMainWindow>
-
-#include "gamemanager.h"
-#include "examsystem.h"
+#include "../libcore/gamemanager.h"
+#include "../libcore/examsystem.h"
 
 class QLabel;
 class QPushButton;
@@ -30,8 +29,12 @@ private:
     GameManager *m_manager = nullptr;
     ExamSystem m_examSystem;
 
-    QLabel *m_statusLabel = nullptr;
-    QLabel *m_rateLabel = nullptr;
+    // ----- 新增现代化仪表盘标签 -----
+    QLabel *m_semesterValueLabel = nullptr;
+    QLabel *m_phaseValueLabel = nullptr;
+    QLabel *m_coinValueLabel = nullptr;
+    QLabel *m_kpiValueLabel = nullptr;
+
     QTableWidget *m_studentTable = nullptr;
     EventLogWidget *m_logWidget = nullptr;
 
