@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>questions.json</file>
+    </qresource>
+    <qresource prefix="/ui">
+        <file alias="app_icon.svg">resources/ui/app_icon.svg</file>
+        <file alias="recruit.svg">resources/ui/recruit.svg</file>
+        <file alias="next.svg">resources/ui/next.svg</file>
+        <file alias="exam.svg">resources/ui/exam.svg</file>
+        <file alias="sell.svg">resources/ui/sell.svg</file>
+        <file alias="log.svg">resources/ui/log.svg</file>
+        <file alias="help.svg">resources/ui/help.svg</file>
+    </qresource>
+</RCC>
