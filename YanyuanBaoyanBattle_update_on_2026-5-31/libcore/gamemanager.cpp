@@ -289,7 +289,7 @@ void GameManager::sellStudent(int studentIndex)
         return;
     }
 
-    const int income = qRound(m_students[studentIndex].marketPrice() * GameConfig::SellIncomeRate);
+    const int income = m_students[studentIndex].marketPrice();
     const QString name = m_students[studentIndex].name();
     m_students[studentIndex].markSold();
     m_coins += income;

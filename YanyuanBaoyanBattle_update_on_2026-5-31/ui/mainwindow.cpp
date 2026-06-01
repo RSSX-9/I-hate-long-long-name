@@ -436,7 +436,7 @@ void MainWindow::sellSelectedStudent()
         return;
     }
 
-    const int income = qRound(students[row].marketPrice() * GameConfig::SellIncomeRate);
+    const int income = students[row].marketPrice();
     const QMessageBox::StandardButton ret = showPrettyQuestion(
                 this,
                 QStringLiteral("确认协助转学发展"),
