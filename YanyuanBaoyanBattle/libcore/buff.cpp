@@ -84,7 +84,7 @@ QVector<Buff> Buff::library()
         Buff(QStringLiteral("春日赏花"), QStringLiteral("校园花开烂漫，心情愉悦。"), EffectTarget::AllStudents, 0, 4, 5, 0),
         Buff(QStringLiteral("瑜伽课程"), QStringLiteral("身心合一，缓解疲劳。"), EffectTarget::AllStudents, 0, 8, 6, -5),
         Buff(QStringLiteral("室友庆生"), QStringLiteral("随机一人收到室友惊喜。"), EffectTarget::RandomStudent, 0, 1, 10, -40),
-        Buff(QStringLiteral("社团出游"), QStringLiteral("集体户外活动，放松身心。"), EffectTarget::AllStudents, 0, 3, 8, 30),
+        Buff(QStringLiteral("社团出游"), QStringLiteral("集体户外活动，放松身心。"), EffectTarget::AllStudents, 0, 3, 8, -30),
         Buff(QStringLiteral("睡眠日倡议"), QStringLiteral("强调充足睡眠，改善作息。"), EffectTarget::AllStudents, 0, 7, 4, 0),
         Buff(QStringLiteral("志愿活动"), QStringLiteral("帮助他人，收获快乐。"), EffectTarget::AllStudents, 0, 3, 6, -5),
         Buff(QStringLiteral("期末减压茶话会"), QStringLiteral("师生畅谈，缓解焦虑。"), EffectTarget::AllStudents, 0, 4, 4, -10)
