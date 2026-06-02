@@ -3,10 +3,10 @@
 namespace GameConfig
 {
 // ----- 核心流程 -----
-inline constexpr int StartingFunds = 4000;
-inline constexpr int MinRecruitCount = 6;
+inline constexpr int StartingFunds = 5000;
+inline constexpr int MinRecruitCount = 5;
 inline constexpr int TotalSemesters = 8;
-inline constexpr int WinRecommendCount = 6;
+inline constexpr int WinRecommendCount = 5;
 
 // ----- 学生属性 -----
 inline constexpr int AttributeMin = 0;
@@ -84,14 +84,14 @@ struct RecruitCandidateConfig
 
 inline constexpr RecruitCandidateConfig RecruitCandidates[] = {
     {"学霸张三", 85, 75, 70, 300, true},
-    {"运动李四", 70, 90, 80, 300, false},
+    {"运动李四", 70, 90, 80, 300, true},
     {"乐观王五", 60, 70, 95, 260, true},
     {"普通赵六", 70, 70, 70, 240, true},
     {"卷王小陈", 90, 55, 60, 250, false},
     {"佛系小林", 55, 80, 88, 240, true},
-    {"社团达人", 65, 75, 85, 270, false},
+    {"社团达人", 65, 75, 85, 270, true},
     {"科研新星", 82, 62, 68, 260, false},
-    {"夜跑高手", 68, 95, 62, 270, false},
-    {"稳定小周", 75, 78, 78, 290, false}
+    {"夜跑高手", 68, 95, 62, 270, true},
+    {"稳定小周", 75, 78, 78, 290, true}
 };
 }
