@@ -21,6 +21,7 @@ public:
 private slots:
     void startRecruitment();
     void refreshUi();
+    void showSuspension(const QString &msg);
     void handleBuffChoice(const QVector<Buff> &choices, const QString &title);
     void handleEventShow(const Event& event);
     void handleLivingCost(const QString& message);

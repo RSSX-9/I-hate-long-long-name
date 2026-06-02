@@ -241,9 +241,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_manager, &GameManager::requestShowExamResult, this, &MainWindow::handleExamResult);
     connect(m_manager, &GameManager::gameEnded, this, &MainWindow::showGameEnd);
     connect(m_manager, &GameManager::errorMessage, this, &MainWindow::showError);
+    connect(m_manager, &GameManager::requestShowSuspension, this, &MainWindow::showSuspension);
     connect(m_studentTable, &QTableWidget::itemSelectionChanged, this, &MainWindow::handleStudentSelection);
 
     refreshUi();
+}
+
+void MainWindow::showSuspension(const QString &msg)
+{
+    QMessageBox::warning(this, QStringLiteral("休学通知"), msg);
 }
 
 void MainWindow::startRecruitment()

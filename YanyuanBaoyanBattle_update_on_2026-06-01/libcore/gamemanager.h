@@ -65,6 +65,7 @@ signals:
     void requestShowEvent(const Event& event);
     void requestShowExamResult(const QString &title, const QString &message);
     void showDeductLivingCost(const QString& message);
+    void requestShowSuspension(const QString &message);
 
 private:
     QVector<Student> m_students;

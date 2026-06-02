@@ -436,16 +436,24 @@ void GameManager::simulateExamForAll(const QString &examName)
 void GameManager::checkSuspensions()
 {
     int suspended = 0;
+    QStringList suspensionMessages;
     for (Student &s : m_students) {
         if (s.isActive() && (s.score() < GameConfig::SuspensionThreshold || s.health() < GameConfig::SuspensionThreshold || s.mood() < GameConfig::SuspensionThreshold)) {
             s.markSuspended();
             m_coins -= GameConfig::SuspendPenalty;
             ++suspended;
-            addLog(QStringLiteral("休学警报：%1 任一属性低于 %2，支付公关费 %3。").arg(s.name()).arg(GameConfig::SuspensionThreshold).arg(GameConfig::SuspendPenalty));
+            QString msg = QStringLiteral("休学警报：%1 任一属性低于 %2，支付公关费 %3。")
+                              .arg(s.name())
+                              .arg(GameConfig::SuspensionThreshold)
+                              .arg(GameConfig::SuspendPenalty);
+            addLog(msg);
+            suspensionMessages << msg;
         }
     }
     if (suspended == 0) {
         addLog(QStringLiteral("本学期无人休学。"));
+    } else {
+        emit requestShowSuspension(suspensionMessages.join("\n"));
     }
     checkActiveCountAndFail();
 }
