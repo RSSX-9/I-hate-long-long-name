@@ -249,7 +249,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::showSuspension(const QString &msg)
 {
-    QMessageBox::warning(this, QStringLiteral("休学通知"), msg);
+    showPrettyMessage(this,
+                      QStringLiteral("休学通知"),
+                      QStringLiteral("⚠️"),
+                      QStringLiteral("有学生因属性过低触发了休学"),
+                      msg,
+                      QMessageBox::Warning);
 }
 
 void MainWindow::startRecruitment()
