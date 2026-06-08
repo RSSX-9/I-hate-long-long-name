@@ -17,7 +17,7 @@ ExamDialog::ExamDialog(const QVector<Question> &questions,
     : QDialog(parent),
       m_questions(questions)
 {
-    setWindowTitle(QStringLiteral("替考答题"));
+    setWindowTitle(QStringLiteral("附身答题"));
     resize(GameConfig::ExamDialogWidth + 80, GameConfig::ExamDialogHeight + 60);
     setModal(true);
     UiStyle::polishDialog(this);
@@ -31,7 +31,7 @@ ExamDialog::ExamDialog(const QVector<Question> &questions,
     layout->setContentsMargins(22, 20, 22, 20);
     layout->setSpacing(12);
 
-    m_titleLabel = new QLabel(QStringLiteral("正在为【%1】替考：共 %2 题。保持冷静，选出最稳答案。")
+    m_titleLabel = new QLabel(QStringLiteral("正在附身【%1】：共 %2 题。保持冷静，选出最稳答案。")
                                   .arg(studentName)
                                   .arg(m_questions.size()), card);
     m_titleLabel->setObjectName(QStringLiteral("SectionTitle"));
@@ -120,7 +120,7 @@ void ExamDialog::submitCurrent()
 
         m_currentSubmitted = true;
         if (m_currentIndex == m_questions.size() - 1) {
-            m_submitButton->setText(QStringLiteral("完成替考"));
+            m_submitButton->setText(QStringLiteral("完成附身"));
         } else {
             m_submitButton->setText(QStringLiteral("下一题"));
         }

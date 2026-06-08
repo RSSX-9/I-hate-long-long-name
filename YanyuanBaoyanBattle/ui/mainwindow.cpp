@@ -271,7 +271,7 @@ void MainWindow::refreshUi()
                                      ? QStringLiteral("-")
                                      : QString::number(m_manager->semester());
 
-    const QString status = QStringLiteral("学期：%1 / %2    阶段：%3    金币：%4    替考：%5/%6")
+    const QString status = QStringLiteral("学期：%1 / %2    阶段：%3    金币：%4    附身：%5/%6")
             .arg(semesterText)
             .arg(GameConfig::TotalSemesters)
             .arg(m_manager->phaseText())
@@ -387,20 +387,20 @@ void MainWindow::doSubstituteExam()
     }
 
     if (!m_manager->canSubstitute()) {
-        showError(QStringLiteral("当前阶段不能替考，或本学期替考次数已用完。"));
+        showError(QStringLiteral("当前阶段不能附身，或本学期附身次数已用完。"));
         return;
     }
     if (!students[row].isActive()) {
-        showError(QStringLiteral("该学生当前不在读，不能替考。"));
+        showError(QStringLiteral("该学生当前不在读，不能附身。"));
         return;
     }
     if (m_manager->coins() < GameConfig::SubstituteCost) {
-        showError(QStringLiteral("金币不足，无法支付替考费用。"));
+        showError(QStringLiteral("金币不足，无法支付附身费用。"));
         return;
     }
 
     if (m_manager->isStudentSubstituted(row)) {
-        showError(QStringLiteral("该学生本学期已接受过替考，不能重复替考。"));
+        showError(QStringLiteral("该学生本学期已接受过附身，不能重复附身。"));
         return;
     }
 
@@ -415,10 +415,10 @@ void MainWindow::doSubstituteExam()
         const QString emoji = acc >= 0.8 ? QStringLiteral("😄")
                               : acc >= 0.6 ? QStringLiteral("🙂")
                               : QStringLiteral("😢");
-        const QString headline = acc >= 0.8 ? QStringLiteral("替考发挥出色！")
-                                : acc >= 0.6 ? QStringLiteral("替考顺利完成")
-                                : QStringLiteral("替考已结束");
-        const QString body = QStringLiteral("【%1】的替考任务已完成。\n\n✅ 答对 %2 / %3 题\n📈 正确率：%4%\n📘 成绩提升：+%5\n💸 行动花费：-%6 金币")
+        const QString headline = acc >= 0.8 ? QStringLiteral("附身考试发挥出色！")
+                                : acc >= 0.6 ? QStringLiteral("附身顺利完成")
+                                : QStringLiteral("附身已结束");
+        const QString body = QStringLiteral("【%1】的附身任务已完成。\n\n✅ 答对 %2 / %3 题\n📈 正确率：%4%\n📘 成绩提升：+%5\n💸 行动花费：-%6 金币")
                 .arg(students[row].name())
                 .arg(correctCount)
                 .arg(questions.size())
@@ -426,7 +426,7 @@ void MainWindow::doSubstituteExam()
                 .arg(delta)
                 .arg(GameConfig::SubstituteCost);
         showPrettyMessage(this,
-                          QStringLiteral("替考行动反馈"),
+                          QStringLiteral("附身行动反馈"),
                           emoji,
                           headline,
                           body,
@@ -585,7 +585,7 @@ void MainWindow::buildLayout()
     metricsLayout->addWidget(metricCard(QStringLiteral("当前学期"), &m_semesterValueLabel, this), 0, 0);
     metricsLayout->addWidget(metricCard(QStringLiteral("经营阶段"), &m_phaseValueLabel, this), 0, 1);
     metricsLayout->addWidget(metricCard(QStringLiteral("资金余额"), &m_coinValueLabel, this), 0, 2);
-    metricsLayout->addWidget(metricCard(QStringLiteral("本学期替考"), &m_substituteValueLabel, this), 0, 3);
+    metricsLayout->addWidget(metricCard(QStringLiteral("本学期附身"), &m_substituteValueLabel, this), 0, 3);
     mainLayout->addLayout(metricsLayout);
 
     auto *controlPanel = new QFrame(this);
@@ -596,7 +596,7 @@ void MainWindow::buildLayout()
 
     m_recruitButton = new QPushButton(QStringLiteral("开局招生"), this);
     m_nextButton = new QPushButton(QStringLiteral("推进阶段"), this);
-    m_examButton = new QPushButton(QStringLiteral("为选中学生替考"), this);
+    m_examButton = new QPushButton(QStringLiteral("附身选中学生"), this);
     m_sellButton = new QPushButton(QStringLiteral("协助转学发展"), this);
     m_guideButton = new QPushButton(QStringLiteral("玩法说明"), this);
 
@@ -674,7 +674,7 @@ void MainWindow::buildLayout()
     mainLayout->addWidget(m_statusLabel);
 
     auto *help = new QLabel(QStringLiteral(
-                                "流程：招生 → 推进阶段 → 选择 Buff → 替考/考试/事件 → 结算阶段协助转学发展 → %1 学期后需有至少 %2 名学生保研。"
+                                "流程：招生 → 推进阶段 → 选择 Buff → 附身/考试/事件 → 结算阶段协助转学发展 → %1 学期后需有至少 %2 名学生保研。"
                                 "休学学生不计入保研；已转学学生不能保研且占用初始名额，操作前请谨慎评估。")
                                 .arg(GameConfig::TotalSemesters)
                                 .arg(GameConfig::WinRecommendCount), this);

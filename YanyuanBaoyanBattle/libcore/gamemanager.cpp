@@ -53,7 +53,7 @@ QString GameManager::phaseText() const
     switch (m_phase) {
     case GamePhase::NotStarted: return QStringLiteral("未开始");
     case GamePhase::SemesterStart: return QStringLiteral("学期初");
-    case GamePhase::MidtermPreparation: return QStringLiteral("期中前/替考决策");
+    case GamePhase::MidtermPreparation: return QStringLiteral("期中前/附身决策");
     case GamePhase::MidtermExam: return QStringLiteral("期中考试");
     case GamePhase::LateSemester: return QStringLiteral("期中后至期末前");
     case GamePhase::FinalExam: return QStringLiteral("期末考试");
@@ -152,7 +152,7 @@ void GameManager::advance()
 
     case GamePhase::MidtermPreparation:
         m_phase = GamePhase::MidtermExam;
-        addLog(QStringLiteral("进入期中考试。若还想替考，请在点击前完成。"));
+        addLog(QStringLiteral("进入期中考试。若还想附身，请在点击前完成。"));
         emit stateChanged();
         return;
 
@@ -237,7 +237,7 @@ void GameManager::applyChosenBuff(int index)
 void GameManager::applySubstituteExam(int studentIndex, double accuracy)
 {
     if (!canSubstitute()) {
-        emit errorMessage(QStringLiteral("当前阶段不能替考，或替考次数已用完。"));
+        emit errorMessage(QStringLiteral("当前阶段不能附身，或附身次数已用完。"));
         return;
     }
     if (studentIndex < 0 || studentIndex >= m_students.size()) {
@@ -245,15 +245,15 @@ void GameManager::applySubstituteExam(int studentIndex, double accuracy)
         return;
     }
     if (!m_students[studentIndex].isActive()) {
-        emit errorMessage(QStringLiteral("只能为在读学生替考。"));
+        emit errorMessage(QStringLiteral("只能附身在读学生。"));
         return;
     }
     if (m_coins < GameConfig::SubstituteCost) {
-        emit errorMessage(QStringLiteral("金币不足，无法支付替考行动成本。"));
+        emit errorMessage(QStringLiteral("金币不足，无法支付附身行动成本。"));
         return;
     }
     if (m_substitutedIndices.contains(studentIndex)) {
-        emit errorMessage(QStringLiteral("该学生本学期已接受过替考，不能重复替考。"));
+        emit errorMessage(QStringLiteral("该学生本学期已接受过附身，不能重复附身。"));
         return;
     }
 
@@ -263,7 +263,7 @@ void GameManager::applySubstituteExam(int studentIndex, double accuracy)
     m_coins -= GameConfig::SubstituteCost;
     ++m_substitutesUsed;
 
-    addLog(QStringLiteral("替考：%1 正确率 %2%，成绩 +%3，金币 -%4。本学期已替考 %5/%6。")
+    addLog(QStringLiteral("替考：%1 正确率 %2%，成绩 +%3，金币 -%4。本学期已附身 %5/%6。")
            .arg(m_students[studentIndex].name())
            .arg(accuracy * 100.0, 0, 'f', 0)
            .arg(delta)
@@ -285,7 +285,7 @@ void GameManager::sellStudent(int studentIndex)
         return;
     }
     if (!m_students[studentIndex].isActive()) {
-        emit errorMessage(QStringLiteral("该学生已不在读，不能出售。"));
+        emit errorMessage(QStringLiteral("该学生已不在读，不能转学。"));
         return;
     }
 
