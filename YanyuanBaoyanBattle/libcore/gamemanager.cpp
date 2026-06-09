@@ -263,7 +263,7 @@ void GameManager::applySubstituteExam(int studentIndex, double accuracy)
     m_coins -= GameConfig::SubstituteCost;
     ++m_substitutesUsed;
 
-    addLog(QStringLiteral("替考：%1 正确率 %2%，成绩 +%3，金币 -%4。本学期已附身 %5/%6。")
+    addLog(QStringLiteral("附身：%1 正确率 %2%，成绩 +%3，金币 -%4。本学期已附身 %5/%6。")
            .arg(m_students[studentIndex].name())
            .arg(accuracy * 100.0, 0, 'f', 0)
            .arg(delta)
